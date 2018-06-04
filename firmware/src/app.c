@@ -5,7 +5,7 @@ DRV_HANDLE tmr0_handle;
 DRV_HANDLE oc0_handle;
 DRV_HANDLE oc1_handle;
 
-uint32_t tmr0_period=10000;
+uint16_t tmr0_period=10000;
 
 /* Initialise App */
 void APP_Initialize ( void )
@@ -20,7 +20,8 @@ void APP_Initialize ( void )
     tmr0_handle = DRV_TMR_Open(DRV_TMR_INDEX_0, DRV_IO_INTENT_EXCLUSIVE);
     if ( DRV_TMR_CLIENT_STATUS_READY != DRV_TMR_ClientStatus(tmr0_handle) )
         return;
-    DRV_TMR_AlarmPeriodSet(tmr0_handle, tmr0_period);
+    /* Static driver does not map DRV_TMR_PeriodValueSet */
+    DRV_TMR0_PeriodValueSet(tmr0_period);
     DRV_TMR_Start(tmr0_handle);
 
     /* Open and start OC0 (OC_ID_1) */
