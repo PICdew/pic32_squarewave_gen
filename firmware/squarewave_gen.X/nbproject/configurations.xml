@@ -73,9 +73,16 @@
             <itemPath>../../../../framework/system/ports/sys_ports.h</itemPath>
             <itemPath>../../../../framework/system/ports/sys_ports_definitions.h</itemPath>
           </logicalFolder>
+          <logicalFolder name="f5" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../framework/system/tmr/src/sys_tmr_local.h</itemPath>
+            </logicalFolder>
+            <itemPath>../../../../framework/system/tmr/sys_tmr.h</itemPath>
+          </logicalFolder>
           <itemPath>../../../../framework/system/system.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <itemPath>../src/pt_harmony_1_0_0.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -135,6 +142,11 @@
           <logicalFolder name="f1" displayName="int" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../../../../framework/system/int/src/sys_int_pic32.c</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../framework/system/tmr/src/sys_tmr.c</itemPath>
             </logicalFolder>
           </logicalFolder>
         </logicalFolder>

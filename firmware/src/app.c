@@ -1,4 +1,5 @@
 #include "app.h"
+#include "pt_harmony_1_0_0.h"
 
 APP_DATA appData;
 DRV_HANDLE tmr0_handle;
@@ -42,6 +43,9 @@ void APP_Initialize ( void )
     /* Go high at 2500 low at 5000 */
     DRV_OC_CompareValuesDualSet(oc1_handle, tmr0_period>>2, tmr0_period>>1);
     DRV_OC_Start(oc1_handle, DRV_IO_INTENT_EXCLUSIVE);
+    
+    /* Setup Proto Threads */
+    PT_setup();
 }
 
 /* App state machine */
