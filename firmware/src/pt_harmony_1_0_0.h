@@ -737,24 +737,15 @@ DRV_HANDLE time_tmr_handle;
 #endif // #ifndef TIME_TMR_INDEX
  */
 
-void PT_inc_timer(uintptr_t context, uint32_t currTick) { time_tick_millsec++; }
+//void PT_inc_timer(uintptr_t context, uint32_t currTick) { time_tick_millsec++; }
+#define PT_inc_timer() time_tick_millsec++
 
 void PT_setup (void)
-{
-    /*
-    time_tmr_handle = DRV_TMR_Open(TIME_TMR_INDEX, DRV_IO_INTENT_EXCLUSIVE);
-    if ( DRV_TMR_CLIENT_STATUS_READY != DRV_TMR_ClientStatus(time_tmr_handle) )
-        return;
-    DRV_TMR_ClockSet(time_tmr_handle, DRV_TMR_CLKSOURCE_INTERNAL, TMR_PRESCALE_VALUE_1);
-    PT_set_time_period(SYS_CLK_BUS_PERIPHERAL_1/1000) ;
-    DRV_TMR_Start(time_tmr_handle);
-     */
-    
-    /* Setup System Timer and register 1ms callback to increment time_tick_millsec */
-    if (SYS_STATUS_READY == SYS_TMR_Status(sysObj.sysTmr) )
-    {
-        SYS_TMR_CallbackPeriodic(1,0, PT_inc_timer );
-    }
+{   
+    /* Setup TMR0 as a 1ms timer. The associated ISR needs to include PT_inc_timer() */
+    DRV_TMR0_ClockSet(DRV_TMR_CLKSOURCE_INTERNAL, TMR_PRESCALE_VALUE_1);
+    DRV_TMR0_PeriodValueSet(DRV_TMR0_CounterFrequencyGet()/1000);
+    DRV_TMR0_Start();
 }
 
 /* LG
